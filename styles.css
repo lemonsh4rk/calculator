@@ -8,3 +8,7 @@ body {
   color: #74c7ec;
   background-color: #1e1e2e;
 }
+
+div {
+  border: 1px solid;
+}

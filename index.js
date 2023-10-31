@@ -7,39 +7,49 @@ let operators = document.querySelectorAll(".operator")
 let display = document.querySelector("#display");
 let clearAll = document.querySelector("#allclear");
 let equalBtn = document.querySelector("#equal")
-
+let operation = document.querySelector("#operation");
 
 numbers.forEach((button) => {
-  display.textContent = "";
   button.addEventListener("click", () => {
-
-    display.textContent += button.textContent;
-  })
-
-});
-
-operators.forEach((button) => {
-  button.addEventListener("click", () => {
-
-    if (firstValue === "" && secondValue === "") {
-      
-
-    } else if (firstValue !== "" && secondValue === "") {
-
-
-    } else if (firstValue !== "" && secondValue !== "") {
-
-      
+    if (display.textContent === result) {
+      display.textContent = "";
     }
+    display.textContent += button.textContent;
+  
+
+    operators.forEach((button) => {
+      button.addEventListener("click", () => {
+    
+        operator = button.textContent;
+    
+        if (firstValue === "" && secondValue === "") {
+          
+        } else if (firstValue !== "" && secondValue === "") {
+          
+        } else if (firstValue !== "" && secondValue !== "") {
+          
+        }
+    
+        display.textContent = ""
+        console.log(firstValue, secondValue, operator, result)
+      
+        
+        
+        equalBtn.addEventListener("click", () => {
+
+          if (firstValue === "" || secondValue === "") {
+
+          }
+
+        })
+    
+      })
+    });
 
   })
 });
 
-equalBtn.addEventListener("click", () => {
 
-
-
-})
 
 clearAll.addEventListener("click", () => {
   firstValue = ""
@@ -49,16 +59,16 @@ clearAll.addEventListener("click", () => {
 }) // I love this button so much, tysm ;-;
 
 function add(a, b) {
-  return a + b;
+  return parseFloat(a) + parseFloat(b);
 };
 function substract(a, b) {
-  return a - b;
+  return parseFloat(a) - parseFloat(b);
 };
 function multiply(a, b) {
-  return a * b;
+  return parseFloat(a) * parseFloat(b);
 };
 function divide(a, b) {
-  return a / b;
+  return parseFloat(a) / parseFloat(b);
 };
 
 function operate(operator, numberA, numberB) {

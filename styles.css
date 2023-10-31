@@ -44,6 +44,8 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   font-size: 12dvh;
+  flex-wrap: wrap;
+  overflow: hidden;
   padding-right: 10px;
   color: #cdd6f4;
 }
@@ -75,11 +77,11 @@ button {
   background-color: #74c7ecaa;
 }
 
-.operator {
+.operator, .equal {
   background-color: #fab387;
 }
 
-.operator:active {
+.operator:active, .equal:active {
   background-color: #fab387aa;
 }
 

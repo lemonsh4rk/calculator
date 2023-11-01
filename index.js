@@ -9,6 +9,48 @@ let clearAll = document.querySelector("#allclear");
 let equalBtn = document.querySelector("#equal")
 let operation = document.querySelector(".operation");
 
+
+
+
+function add(a, b) {
+  return parseFloat(a) + parseFloat(b);
+};
+
+function substract(a, b) {
+  return parseFloat(a) - parseFloat(b);
+};
+
+function multiply(a, b) {
+  return parseFloat(a) * parseFloat(b);
+};
+
+function divide(a, b) {
+  return parseFloat(a) / parseFloat(b);
+};
+
+function calculate(operator, numberA, numberB) {
+  Number(numberA), Number(numberB);
+  if (operator === "+") {
+    return add(numberA, numberB);
+  } else if (operator === "-") {
+    return substract(numberA, numberB);
+  } else if (operator === "*") {
+    return multiply(numberA, numberB);
+  } else if (operator === "/") {
+    if (numberB == 0) {
+      return `Can't do that`
+    } else {
+      return divide(numberA, numberB);
+    }
+  } else {
+    return null
+  }
+};
+
+
+
+/*
+
 // number listener
 numbers.forEach(number => number.addEventListener("click", () => {
 
@@ -72,44 +114,4 @@ if (firstValue == "" || secondValue == "") {
   operation.textContent = ""
 } else {
   operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = `
-}
-
-
-
-
-
-
-function add(a, b) {
-  return parseFloat(a) + parseFloat(b);
-};
-
-function substract(a, b) {
-  return parseFloat(a) - parseFloat(b);
-};
-
-function multiply(a, b) {
-  return parseFloat(a) * parseFloat(b);
-};
-
-function divide(a, b) {
-  return parseFloat(a) / parseFloat(b);
-};
-
-function calculate(operator, numberA, numberB) {
-  Number(numberA), Number(numberB);
-  if (operator === "+") {
-    return add(numberA, numberB);
-  } else if (operator === "-") {
-    return substract(numberA, numberB);
-  } else if (operator === "*") {
-    return multiply(numberA, numberB);
-  } else if (operator === "/") {
-    if (numberB == 0) {
-      return `Can't do that`
-    } else {
-      return divide(numberA, numberB);
-    }
-  } else {
-    return null
-  }
-};
+}   */

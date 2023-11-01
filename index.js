@@ -14,9 +14,9 @@ const operation = document.querySelector(".operation");
 
 
 function changeDisplay() {
-  display.textContent = displayValue;
+  display.innerHTML = displayValue;
   if (displayValue.length > 9) {
-    display.textContent = displayValue.substring(0, 9);
+    display.innerHTML = displayValue.substring(0, 9);
   }
 }
 
@@ -24,7 +24,7 @@ changeDisplay();
 
 function changeOperationDisplay() {
 
-    operation.textContent = operationValue;
+    operation.innerHTML = operationValue;
   
 }
 
@@ -62,14 +62,14 @@ operators.forEach(operator => operator.addEventListener("click", () => {
   if (firstOperatorSymbol != null && secondOperatorSymbol === null) {
     secondOperatorSymbol = operator.textContent;
     secondValue = displayValue;
-    result = calculate(firstOperatorSymbol, firstValue, secondValue);
+    result = round(calculate(firstOperatorSymbol, firstValue, secondValue));
     displayValue = result;
     operationValue = `${firstValue} ${firstOperatorSymbol} ${secondValue}`
     firstValue = displayValue;
     result = null;
   } else if (firstOperatorSymbol != null && secondOperatorSymbol != null) {
     secondValue = displayValue;
-    result = calculate(secondOperatorSymbol, firstValue, secondValue);
+    result = round(calculate(secondOperatorSymbol, firstValue, secondValue));
     secondOperatorSymbol = operator.textContent;
     displayValue = result;
     operationValue = `${firstValue} ${secondOperatorSymbol} ${secondValue}`
@@ -94,7 +94,7 @@ equalBtn.addEventListener("click", () => {
     operationValue = displayValue;
   } else if (secondOperatorSymbol != null) {
     secondValue = displayValue;
-    result = calculate(secondOperatorSymbol, firstValue, secondValue);
+    result = round(calculate(secondOperatorSymbol, firstValue, secondValue));
     if (result === "ErroR") {
       displayValue = "ErroR";
       operationValue = `ErroR`
@@ -110,7 +110,7 @@ equalBtn.addEventListener("click", () => {
     }
   } else {
     secondValue = displayValue;
-    result = calculate(firstOperatorSymbol, firstValue, secondValue)
+    result = round(calculate(firstOperatorSymbol, firstValue, secondValue))
     if (result === "ErroR") {
       displayValue = "ErroR"
       operationValue = `ErroR`
@@ -141,34 +141,39 @@ clearAll.addEventListener("click", () => {
 })
 
 function add(a, b) {
-  return parseFloat(a) + parseFloat(b);
+  return a + b;
 };
 
 function substract(a, b) {
-  return parseFloat(a) - parseFloat(b);
+  return a - b;
 };
 
 function multiply(a, b) {
-  return parseFloat(a) * parseFloat(b);
+  return a * b;
 };
 
 function divide(a, b) {
-  return parseFloat(a) / parseFloat(b);
+  return a / b;
 };
 
 function calculate(operator, numberA, numberB) {
   Number(numberA), Number(numberB);
+  
   if (operator === "+") {
-    return add(numberA, numberB).toFixed(5);
+    return add(numberA, numberB);
   } else if (operator === "-") {
-    return substract(numberA, numberB).toFixed(5);
+    return substract(numberA, numberB);
   } else if (operator === "*") {
-    return multiply(numberA, numberB).toFixed(5);
+    return multiply(numberA, numberB);
   } else if (operator === "/") {
     if (numberB == 0) {
       return `ErroR`
     } else {
-      return divide(numberA, numberB).toFixed(5);
+      return divide(numberA, numberB);
     }
   }
 };
+
+function round(value) {
+  return parseFloat(Math.round(value + 'e' + 6) + 'e-' + 6)
+}

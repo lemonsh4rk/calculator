@@ -1,6 +1,6 @@
 let firstValue = "";
 let secondValue = "";
-let operator = "";
+let operatorSymbol = "";
 let result = null;
 let numbers = document.querySelectorAll(".number");
 let operators = document.querySelectorAll(".operator")
@@ -16,14 +16,25 @@ numbers.forEach(number => number.addEventListener("click", () => {
 
 }))
 
+// operators listener
+operators.forEach(operator => operator.addEventListener("click", () => {
 
+  operatorSymbol = operator.textContent;
 
+}))
 
-// this goes somewhere, idk
-result = calculate(operator, firstValue, secondValue)
+// equalbtn listener
+equalBtn.addEventListener("click", () => {
 
+  result = calculate(operatorSymbol, firstValue, secondValue)
 
+})
 
+if (firstValue == "" || secondValue == "") {
+  operation.textContent = ""
+} else {
+  operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = `
+}
 
 // clearall listener
 clearAll.addEventListener("click", () => {
@@ -34,6 +45,8 @@ clearAll.addEventListener("click", () => {
   display.textContent = "";
   operation.textContent = "";
 })
+
+
 
 
 
@@ -59,30 +72,19 @@ function divide(a, b) {
 
 function calculate(operator, numberA, numberB) {
   Number(numberA), Number(numberB);
-
   if (operator === "+") {
-
     return add(numberA, numberB);
-
   } else if (operator === "-") {
-
     return substract(numberA, numberB);
-
   } else if (operator === "*") {
-
     return multiply(numberA, numberB);
-
   } else if (operator === "/") {
-
     if (numberA == 0) {
       return `Can't do that`
+    } else {
+      return divide(numberA, numberB);
     }
-
-    return divide(numberA, numberB);
-
   } else {
-
     return null
-
   }
 };

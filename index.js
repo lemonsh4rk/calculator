@@ -62,14 +62,14 @@ operators.forEach(operator => operator.addEventListener("click", () => {
   if (firstOperatorSymbol != null && secondOperatorSymbol === null) {
     secondOperatorSymbol = operator.textContent;
     secondValue = displayValue;
-    result = round(calculate(firstOperatorSymbol, firstValue, secondValue));
+    result = round(calculate(firstOperatorSymbol, Number(firstValue), Number(secondValue)));
     displayValue = result;
     operationValue = `${firstValue} ${firstOperatorSymbol} ${secondValue}`
     firstValue = displayValue;
     result = null;
   } else if (firstOperatorSymbol != null && secondOperatorSymbol != null) {
     secondValue = displayValue;
-    result = round(calculate(secondOperatorSymbol, firstValue, secondValue));
+    result = round(calculate(secondOperatorSymbol, Number(firstValue), Number(secondValue)));
     secondOperatorSymbol = operator.textContent;
     displayValue = result;
     operationValue = `${firstValue} ${secondOperatorSymbol} ${secondValue}`
@@ -94,7 +94,7 @@ equalBtn.addEventListener("click", () => {
     operationValue = displayValue;
   } else if (secondOperatorSymbol != null) {
     secondValue = displayValue;
-    result = round(calculate(secondOperatorSymbol, firstValue, secondValue));
+    result = round(calculate(secondOperatorSymbol, Number(firstValue), Number(secondValue)));
     if (result === "ErroR") {
       displayValue = "ErroR";
       operationValue = `ErroR`
@@ -110,7 +110,7 @@ equalBtn.addEventListener("click", () => {
     }
   } else {
     secondValue = displayValue;
-    result = round(calculate(firstOperatorSymbol, firstValue, secondValue))
+    result = round(calculate(firstOperatorSymbol, Number(firstValue), Number(secondValue)))
     if (result === "ErroR") {
       displayValue = "ErroR"
       operationValue = `ErroR`
@@ -157,7 +157,6 @@ function divide(a, b) {
 };
 
 function calculate(operator, numberA, numberB) {
-  Number(numberA), Number(numberB);
   
   if (operator === "+") {
     return add(numberA, numberB);

@@ -1,7 +1,7 @@
 let firstValue = null;
 let secondValue = null;
 let firstOperatorSymbol = null;
-let secondOpertarSymbol = null
+let secondOperatorSymbol = null
 let result = null;
 let displayValue = "0"
 const numbers = document.querySelectorAll(".number");
@@ -42,7 +42,27 @@ numbers.forEach(number => number.addEventListener("click", () => {
 
 operators.forEach(operator => operator.addEventListener("click", () => {
 
+  operator.textContent;
 
+
+  if (firstOperatorSymbol != null && secondOperatorSymbol === null) {
+    secondOperatorSymbol = operator.textContent;
+    secondValue = displayValue;
+    result = calculate(firstOperatorSymbol, firstValue, secondValue);
+    displayValue = result;
+    firstValue = displayValue;
+    result = null;
+  } else if (firstOperatorSymbol != null && secondOperatorSymbol != null) {
+    secondValue = displayValue;
+    result = calculate(secondOperatorSymbol, firstValue, secondValue);
+    secondOperatorSymbol = operator.textContent;
+    displayValue = result;
+    firstValue = displayValue;
+    result = null;
+  } else {
+    firstOperatorSymbol = operator.textContent;
+    firstValue = displayValue;
+  }
 
 
 }))

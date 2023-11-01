@@ -3,14 +3,67 @@ let secondValue = null;
 let firstOperatorSymbol = null;
 let secondOpertarSymbol = null
 let result = null;
-let numbers = document.querySelectorAll(".number");
-let operators = document.querySelectorAll(".operator")
-let display = document.querySelector("#display");
-let clearAll = document.querySelector("#allclear");
-let equalBtn = document.querySelector("#equal")
-let operation = document.querySelector(".operation");
+let displayValue = "0"
+const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator")
+const display = document.querySelector("#display");
+const clearAll = document.querySelector("#allclear");
+const equalBtn = document.querySelector("#equal")
+const operation = document.querySelector(".operation");
 
-display.textContent = "0"
+
+function changeDisplay() {
+  display.textContent = displayValue;
+}
+
+changeDisplay();
+
+
+numbers.forEach(number => number.addEventListener("click", () => {
+
+  if (firstValue === null) {
+    if (displayValue === "0" || displayValue === 0) {
+      displayValue = number.textContent;
+    } else if (displayValue === firstValue) {
+      displayValue = number.textContent;
+    } else {
+      displayValue += number.textContent;
+    } 
+  } else {
+    if (displayValue === firstValue) {
+      displayValue = number.textContent;
+    } else {
+      displayValue += number.textContent;
+    }
+  }
+
+  changeDisplay()
+}))
+
+operators.forEach(operator => operator.addEventListener("click", () => {
+
+
+
+
+}))
+
+equalBtn.addEventListener("click", () => {
+
+
+
+  changeDisplay();
+})
+
+clearAll.addEventListener("click", () => {
+  displayValue = "0";
+  firstValue = null;
+  secondValue = null;
+  firstOperatorSymbol = null;
+  secondOpertarSymbol = null
+  result = null;
+
+  changeDisplay();
+})
 
 
 function add(a, b) {

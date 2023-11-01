@@ -42,12 +42,13 @@ operators.forEach(operator => operator.addEventListener("click", () => {
     firstValue = result
     result = calculate(operatorSymbol, firstValue, secondValue);
     
+    operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = ${result}`
     display.textContent = ""
   
   }
   
-
 }))
+
 
 // equalbtn listener
 equalBtn.addEventListener("click", () => {
@@ -103,7 +104,7 @@ function calculate(operator, numberA, numberB) {
   } else if (operator === "*") {
     return multiply(numberA, numberB);
   } else if (operator === "/") {
-    if (numberA == 0) {
+    if (numberB == 0) {
       return `Can't do that`
     } else {
       return divide(numberA, numberB);

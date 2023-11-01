@@ -159,16 +159,16 @@ function divide(a, b) {
 function calculate(operator, numberA, numberB) {
   Number(numberA), Number(numberB);
   if (operator === "+") {
-    return add(numberA, numberB);
+    return add(numberA, numberB).toFixed(5);
   } else if (operator === "-") {
-    return substract(numberA, numberB);
+    return substract(numberA, numberB).toFixed(5);
   } else if (operator === "*") {
-    return multiply(numberA, numberB);
+    return multiply(numberA, numberB).toFixed(5);
   } else if (operator === "/") {
     if (numberB == 0) {
       return `ErroR`
     } else {
-      return divide(numberA, numberB);
+      return divide(numberA, numberB).toFixed(5);
     }
   }
 };

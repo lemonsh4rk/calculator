@@ -4,6 +4,7 @@ let firstOperatorSymbol = null;
 let secondOperatorSymbol = null
 let result = null;
 let displayValue = "0"
+let operationValue = "0"
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator")
 const display = document.querySelector("#display");
@@ -17,6 +18,11 @@ function changeDisplay() {
 }
 
 changeDisplay();
+
+function changeOperationDisplay() {
+  operation.textContent = `${firstValue} ${firstOperatorSymbol} ${secondValue}`
+}
+
 
 
 numbers.forEach(number => number.addEventListener("click", () => {
@@ -42,9 +48,6 @@ numbers.forEach(number => number.addEventListener("click", () => {
 
 operators.forEach(operator => operator.addEventListener("click", () => {
 
-  operator.textContent;
-
-
   if (firstOperatorSymbol != null && secondOperatorSymbol === null) {
     secondOperatorSymbol = operator.textContent;
     secondValue = displayValue;
@@ -63,14 +66,38 @@ operators.forEach(operator => operator.addEventListener("click", () => {
     firstOperatorSymbol = operator.textContent;
     firstValue = displayValue;
   }
-
-
 }))
 
 equalBtn.addEventListener("click", () => {
-
-
-
+  if (firstOperatorSymbol === null) {
+    displayValue = displayValue;
+  } else if (secondOperatorSymbol != null) {
+    secondValue = displayValue;
+    result = calculate(secondOperatorSymbol, firstValue, secondValue);
+    if (result === "ErroR") {
+      displayValue = "ErroR";
+    } else {
+      displayValue = result;
+      firstValue = displayValue;
+      secondValue = null;
+      firstOperatorSymbol = null;
+      secondOperatorSymbol = null;
+      result = null;
+    }
+  } else {
+    secondValue = displayValue;
+    result = calculate(firstOperatorSymbol, firstValue, secondValue)
+    if (result === "ErroR") {
+      displayValue = "ErroR"
+    } else {
+      displayValue = result;
+      firstValue = displayValue;
+      secondValue = null;
+      firstOperatorSymbol = null;
+      secondOperatorSymbol = null;
+      result = null;
+    }
+  }
   changeDisplay();
 })
 
@@ -81,10 +108,8 @@ clearAll.addEventListener("click", () => {
   firstOperatorSymbol = null;
   secondOpertarSymbol = null
   result = null;
-
   changeDisplay();
 })
-
 
 function add(a, b) {
   return parseFloat(a) + parseFloat(b);
@@ -112,80 +137,9 @@ function calculate(operator, numberA, numberB) {
     return multiply(numberA, numberB);
   } else if (operator === "/") {
     if (numberB == 0) {
-      return `Can't do that`
+      return `ErroR`
     } else {
       return divide(numberA, numberB);
     }
-  } else {
-    return null
   }
 };
-
-
-
-/*
-
-// number listener
-numbers.forEach(number => number.addEventListener("click", () => {
-
-  display.textContent += number.textContent;
-
-}))
-
-// operators listener
-operators.forEach(operator => operator.addEventListener("click", () => {
-
-  operatorSymbol = operator.textContent;
-
-  if (firstValue == "" && secondValue == "") {
-
-    operation.textContent = "";
-    firstValue = display.textContent;
-    
-    display.textContent = ""
-  
-  } else if (firstValue != "" && secondValue == "") {
-  
-    secondValue = display.textContent;
-    result = calculate(operatorSymbol, firstValue, secondValue);
-    
-    operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = ${result}`
-    display.textContent = ""
-  
-  } else if (firstValue != "" && secondValue != "") {
-  
-    secondValue = firstValue
-    firstValue = result
-    result = calculate(operatorSymbol, firstValue, secondValue);
-    
-    operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = ${result}`
-    display.textContent = ""
-  
-  }
-  
-}))
-
-
-// equalbtn listener
-equalBtn.addEventListener("click", () => {
-
-  result = calculate(operatorSymbol, firstValue, secondValue)
-
-})
-
-// clearall listener
-clearAll.addEventListener("click", () => {
-  firstValue = "";
-  secondValue = "";
-  operator = "";
-  result = null;
-  display.textContent = "";
-  operation.textContent = "";
-})
-
-
-if (firstValue == "" || secondValue == "") {
-  operation.textContent = ""
-} else {
-  operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = `
-}   */

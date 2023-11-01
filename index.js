@@ -21,6 +21,32 @@ operators.forEach(operator => operator.addEventListener("click", () => {
 
   operatorSymbol = operator.textContent;
 
+  if (firstValue == "" && secondValue == "") {
+
+    operation.textContent = "";
+    firstValue = display.textContent;
+    
+    display.textContent = ""
+  
+  } else if (firstValue != "" && secondValue == "") {
+  
+    secondValue = display.textContent;
+    result = calculate(operatorSymbol, firstValue, secondValue);
+    
+    operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = ${result}`
+    display.textContent = ""
+  
+  } else if (firstValue != "" && secondValue != "") {
+  
+    secondValue = firstValue
+    firstValue = result
+    result = calculate(operatorSymbol, firstValue, secondValue);
+    
+    display.textContent = ""
+  
+  }
+  
+
 }))
 
 // equalbtn listener
@@ -29,12 +55,6 @@ equalBtn.addEventListener("click", () => {
   result = calculate(operatorSymbol, firstValue, secondValue)
 
 })
-
-if (firstValue == "" || secondValue == "") {
-  operation.textContent = ""
-} else {
-  operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = `
-}
 
 // clearall listener
 clearAll.addEventListener("click", () => {
@@ -47,7 +67,11 @@ clearAll.addEventListener("click", () => {
 })
 
 
-
+if (firstValue == "" || secondValue == "") {
+  operation.textContent = ""
+} else {
+  operation.textContent = `${firstValue} ${operatorSymbol} ${secondValue} = `
+}
 
 
 

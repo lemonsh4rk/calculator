@@ -42,7 +42,7 @@ body {
   align-items: flex-end;
   justify-content: flex-end;
   flex-grow: 1;
-  font-size: 8dvh;
+  font-size: 7dvh;
   color: #cdd6f4;
   padding-right: 10px;
 }
@@ -54,7 +54,8 @@ body {
   flex-wrap: wrap;
   flex-grow: 0;
   max-width: 25%;
-  font-size: 4dvh;
+  font-size: 3dvh;
+  padding-top: 10px;
   padding-left: 10px;
   font-weight: bold;
   color: #bac2de;
@@ -101,4 +102,16 @@ button {
 
 .allclear:active {
   background-color: #f38ba8aa;
+}
+
+@media only screen and (min-width: 768px) {
+  .calcbody {
+    width: 50%;
+  }
+} 
+
+@media only screen and (min-width: 1200px) {
+  .calcbody {
+    width: 40%;
+  }
 }

@@ -1,6 +1,7 @@
-let firstValue = "";
-let secondValue = "";
-let operatorSymbol = "";
+let firstValue = null;
+let secondValue = null;
+let firstOperatorSymbol = null;
+let secondOpertarSymbol = null
 let result = null;
 let numbers = document.querySelectorAll(".number");
 let operators = document.querySelectorAll(".operator")
@@ -9,7 +10,7 @@ let clearAll = document.querySelector("#allclear");
 let equalBtn = document.querySelector("#equal")
 let operation = document.querySelector(".operation");
 
-
+display.textContent = "0"
 
 
 function add(a, b) {
